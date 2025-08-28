@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Launcher</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#111;
+      color:#fff;
+      font-family:Arial, sans-serif;
+      flex-direction:column;
+    }
+    input {
+      width:300px;
+      padding:10px;
+      font-size:16px;
+      border-radius:6px;
+      border:none;
+      margin-bottom:10px;
+      outline:none;
+    }
+    button {
+      padding:10px 20px;
+      font-size:16px;
+      border:none;
+      border-radius:6px;
+      background:#0078ff;
+      color:white;
+      cursor:pointer;
+    }
+    button:hover {
+      background:#005fcc;
+    }
+  </style>
+</head>
+<body>
+  <h1>URL Launcher</h1>
+  <input type="text" id="urlInput" placeholder="Enter URL (example.com)">
+  <button id="launchBtn">Go</button>
+
+  <script>
+    const btn = document.getElementById('launchBtn');
+    const input = document.getElementById('urlInput');
+
+    btn.addEventListener('click', () => {
+      let url = input.value.trim();
+      if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+      window.location.href = url; // redirects same tab
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') btn.click();
+    });
+  </script>
+</body>
+</html>
